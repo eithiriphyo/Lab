@@ -223,4 +223,4 @@ The app exposes a `/metrics` endpoint (order counts, order value distribution, H
 ![Demo Artifacts](images/submit_order.png)
 ![Demo Artifacts](images/grafana.png)
 ![Demo Artifacts](images/order_confirmed.png)
-![Demo Artifacts](images/order_confirmed.png)
+![Demo Artifacts](images/argocd.png)
