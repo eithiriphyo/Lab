@@ -1,0 +1,12 @@
+{
+  "name": "ember-wok-delivery",
+  "version": "1.0.0",
+  "description": "Ember & Wok - night-market food delivery app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

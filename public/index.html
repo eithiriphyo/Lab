@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Wok — Night-market fire, delivered.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">炎</span>
+      <span class="brand-name">Ember &amp; Wok</span>
+    </div>
+    <div class="topbar-meta">
+      <span class="eta-pill" id="etaPill">28–40 min</span>
+      <button class="cart-btn" id="cartBtn">
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="hero-eyebrow">Open now · Delivering across the city</p>
+    <h1 class="hero-title">Night-market fire,<br>delivered to your door.</h1>
+    <p class="hero-sub">Charcoal skewers, wok-tossed noodles, and steam baskets — cooked to order, out the door in minutes.</p>
+    <a href="#menu" class="hero-cta">See tonight's menu</a>
+  </div>
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</section>
+
+<main class="wrap" id="menu">
+  <div id="menuRoot" class="menu-root">
+    <p class="loading">Loading tonight's menu…</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Ember &amp; Wok · Minimum order $15 · This is a demo app for a local lab environment.</p>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <h2>Your order</h2>
+    <button class="icon-btn" id="closeCartBtn" aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems">
+    <p class="empty-cart">Your cart is empty. Add something from the grill.</p>
+  </div>
+  <div class="drawer-footer">
+    <div class="drawer-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+    <div class="drawer-row"><span>Delivery</span><span id="cartDelivery">$3.50</span></div>
+    <div class="drawer-row drawer-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <button class="checkout-btn" id="checkoutBtn" disabled>Checkout</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal" id="checkoutModal">
+    <button class="icon-btn modal-close" id="closeCheckoutBtn" aria-label="Close">✕</button>
+    <h2>Delivery details</h2>
+    <form id="checkoutForm">
+      <label>
+        Full name
+        <input type="text" id="custName" required placeholder="Jordan Lee">
+      </label>
+      <label>
+        Delivery address
+        <input type="text" id="custAddress" required placeholder="123 Lantern Street, Apt 4B">
+      </label>
+      <label>
+        Phone number
+        <input type="tel" id="custPhone" required placeholder="(555) 019-2834">
+      </label>
+      <button type="submit" class="checkout-btn" id="placeOrderBtn">
+          <span id="placeOrderLabel">Place order —</span>
+          <span id="modalTotal">$0.00</span>
+        </button>
+    </form>
+  </div>
+</div>
+
+<!-- Confirmation modal -->
+<div class="modal-overlay" id="confirmOverlay">
+  <div class="modal confirm-modal">
+    <div class="confirm-icon">🔥</div>
+    <h2>Order confirmed</h2>
+    <p id="confirmText">Your order is fired up and on its way.</p>
+    <div class="confirm-detail" id="confirmDetail"></div>
+    <button class="checkout-btn" id="confirmCloseBtn">Done</button>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

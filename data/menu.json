@@ -1,0 +1,54 @@
+{
+  "restaurant": {
+    "name": "Ember & Wok",
+    "tagline": "Night-market fire, delivered.",
+    "eta": "28-40 min",
+    "minOrder": 15
+  },
+  "categories": [
+    {
+      "id": "smoke",
+      "name": "From the Grill",
+      "items": [
+        { "id": "sm-1", "name": "Charcoal Skewers", "desc": "Pork belly, scallion, chili-lime glaze, three to a stick", "price": 9.5, "tag": "spicy", "icon": "🔥" },
+        { "id": "sm-2", "name": "Smoked Corn", "desc": "Grilled corn, miso butter, toasted sesame, furikake", "price": 6.0, "tag": "veg", "icon": "🌽" },
+        { "id": "sm-3", "name": "Lantern Wings", "desc": "Double-fried wings tossed in tamarind-chili glaze", "price": 11.0, "tag": "spicy", "icon": "🍗" }
+      ]
+    },
+    {
+      "id": "wok",
+      "name": "Wok & Flame",
+      "items": [
+        { "id": "wk-1", "name": "Midnight Noodles", "desc": "Wok-tossed rice noodles, char siu, bean sprout, dark soy", "price": 14.5, "tag": null, "icon": "🍜" },
+        { "id": "wk-2", "name": "Basil Fire Fried Rice", "desc": "Jasmine rice, holy basil, bird's eye chili, fried egg", "price": 13.0, "tag": "spicy", "icon": "🍳" },
+        { "id": "wk-3", "name": "Garden Wok Greens", "desc": "Seasonal greens, garlic, oyster mushroom, sesame oil", "price": 11.5, "tag": "veg", "icon": "🥬" },
+        { "id": "wk-4", "name": "Black Pepper Beef", "desc": "Seared flank steak, onion, cracked pepper, jasmine rice", "price": 16.5, "tag": null, "icon": "🥩" }
+      ]
+    },
+    {
+      "id": "steam",
+      "name": "Steam Baskets",
+      "items": [
+        { "id": "st-1", "name": "Pork & Chive Dumplings", "desc": "Six hand-folded dumplings, black vinegar dip", "price": 8.5, "tag": null, "icon": "🥟" },
+        { "id": "st-2", "name": "Vegetable Bao", "desc": "Two fluffy steamed buns, mushroom-carrot filling", "price": 7.5, "tag": "veg", "icon": "🫓" }
+      ]
+    },
+    {
+      "id": "sips",
+      "name": "Night Market Sips",
+      "items": [
+        { "id": "sp-1", "name": "Iced Thai Tea", "desc": "Black tea, condensed milk, over ice", "price": 4.5, "tag": null, "icon": "🧋" },
+        { "id": "sp-2", "name": "Calamansi Soda", "desc": "Fresh calamansi, soda water, mint", "price": 4.0, "tag": "veg", "icon": "🥤" },
+        { "id": "sp-3", "name": "Ginger Plum Cooler", "desc": "House-steeped ginger, plum syrup, sparkling water", "price": 4.5, "tag": "veg", "icon": "🍹" }
+      ]
+    },
+    {
+      "id": "sweet",
+      "name": "Last Embers",
+      "items": [
+        { "id": "sw-1", "name": "Black Sesame Mochi", "desc": "Four pieces, roasted sesame filling", "price": 6.5, "tag": "veg", "icon": "🍡" },
+        { "id": "sw-2", "name": "Coconut Sticky Rice", "desc": "Mango, toasted coconut flake, palm sugar drizzle", "price": 7.0, "tag": "veg", "icon": "🥭" }
+      ]
+    }
+  ]
+}

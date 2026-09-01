@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emberwok-deployment
+  labels:
+    app: emberwok
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emberwok
+  template:
+    metadata:
+      labels:
+        app: emberwok
+    spec:
+      containers:
+        - name: emberwok
+          image: ghcr.io/eithiriphyo/emberwok:1.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+          readinessProbe:
+            httpGet:
+              path: /api/menu
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/menu
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emberwok-service
+spec:
+  selector:
+    app: emberwok
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
