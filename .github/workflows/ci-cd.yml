@@ -13,8 +13,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
       - name: Install dependencies
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: npm audit (dependency scan)
         run: npm audit --audit-level=high || true
       - name: Secret scan (placeholder)
@@ -47,10 +47,12 @@ jobs:
     outputs:
       image_tag: ${{ steps.vars.outputs.image_tag }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Set image tag
+      - uses: actions/checkout@v5
+      - name: Set image tag and lowercase image name
         id: vars
-        run: echo "image_tag=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "image_tag=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+          echo "image_name=$(echo '${{ env.IMAGE_NAME }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -63,8 +65,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.image_tag }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:${{ steps.vars.outputs.image_tag }}
+            ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:latest
 
   # 4. DEPLOY (update manifest — the GitOps trigger step)
   update_manifest:
@@ -73,12 +75,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Update image tag in deployment.yaml
         run: |
-          sed -i "s|image: .*|image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.build.outputs.image_tag }}|" k8s/deployment.yaml
+          IMAGE_NAME_LOWER=$(echo '${{ env.IMAGE_NAME }}' | tr '[:upper:]' '[:lower:]')
+          sed -i "s|image: .*|image: ${{ env.REGISTRY }}/${IMAGE_NAME_LOWER}:${{ needs.build.outputs.image_tag }}|" k8s/deployment.yaml
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
